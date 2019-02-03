@@ -1,0 +1,93 @@
+
+body {
+  background-color: #000;
+}
+
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+  color: #fff;
+}
+
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite; 
+}
+
+
+.slideshow li:nth-child(1) { 
+  background-image: url(https://www.photosforclass.com/download/pixabay-690091?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fef3cb10f21f51c22d2524518b7444795ea76e5d004b014459cf1c871a6edbc_960.jpg&user=Free-Photos) 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(https://cdn.pixabay.com/photo/2015/06/24/15/45/ipad-820272_960_720.jpg);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(https://cdn.pixabay.com/photo/2015/11/17/21/46/navigation-1048294_960_720.jpg);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(https://cdn.pixabay.com/photo/2014/03/22/22/15/twitter-292988_960_720.jpg);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(https://cdn.pixabay.com/photo/2016/11/29/05/08/apple-1867461_960_720.jpg);
+  animation-delay: 40s; 
+}
+
+
+@keyframes imageAnimation { 
+  0% { 
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+
+hr
+{
+	width:400px;
+	border-top:1px solid #f8f8f8;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}

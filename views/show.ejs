@@ -1,0 +1,85 @@
+<% include partials/header %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+          <div id="thumbnail-padding" class="img-thumbnail">
+              <div class="glide">
+                  <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                      <% device.fileloc.forEach(function(fileloc){ %>
+                       
+                        <li class="glide__slide"><img id="show"  src="/uploads/<%=fileloc%>"></li>
+
+                    <%  }) %>
+                    </ul>
+                  </div>
+                  <div class="glide__arrows" data-glide-el="controls">
+                      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+                    </div>
+                </div>
+
+
+          <div id="thumbnail-caption" class="caption-full">
+              <div class="text-right card-body">
+                  
+                <% if(currentUser){ %>
+ 
+                <a style="margin-right: 10px;" class="btn btn-sm btn-warning pull-right" href="/device/<%=device._id%>/edit">Edit</a>
+
+                  <form id="deleteForm" method="POST" action="/device/<%=device._id%>?_method=DELETE">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                   </form>
+                <%  }else{ %>
+
+                    <a id="deleteForm" href="/device/<%=device._id%>/order" class="btn btn-info">Order Now !</a>
+
+               <%  } %>
+                 <h1 id="left">Details</h1>
+                 <h4 id="left"><%=device.company%></h4>
+              </div>
+            </div>
+          </div>
+
+            <div id="show-well" class="well">
+               <h1>Description</h1>
+               <p><%=device.company%> <%=device.model%></p>
+               <p><%=device.description%></p>
+           </div>
+          </div>
+
+
+        <div class="col-md-3 well categories">
+             <strong class="lead"><h1>Rs <%=device.price%> </h1></strong> 
+             <p style="font-size: 20px;"><%=device.company%> <%=device.model%></p>
+             <p class="pull-right"> <%= moment(device.time).fromNow() %> </p>  
+          
+
+          <div id="map">
+   
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+<script src="/scripts/glide.min.js"></script>
+
+<script>
+  new Glide('.glide').mount()
+</script>
+  
+  <script type="text/javascript" src="/scripts/main.js">
+  </script>
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+</script>
+
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzvE0C86LUbHBagPNyK3JbMYXQl-SBPkE&callback=initMap">
+</script>
+
+<% include partials/footer %>

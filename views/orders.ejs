@@ -1,0 +1,44 @@
+<% include partials/header %>
+
+
+<div
+
+<%if(orders.length < 1){%>
+  style="padding-bottom: 350px;"
+  <%  } %>
+
+    <%if(orders.length < 4){%>
+    style="padding-bottom: 100px;"
+    <%  } %>
+
+    class="container">
+<h1>Orders</h1>
+<div class="row" style="display:flex; flex-wrap: wrap;">
+    <% orders.forEach(function(order){ %>
+      <div id="homeDevice" class="col-md-3 col-sm-6">
+        <a id="homeCategory" href="/device/<%=order.device._id%>">
+        <div id="thumbnailImage" class="img-thumbnail">
+          <img  class="img-responsive" src="/uploads/<%=order.device.fileloc[0]%>">
+         <div class="caption-full">
+            <h4 id="left"><%= order.device.company %> <%= order.device.model%></h4>
+          <p id="left"> Ordered by <%= order.name %> </p>
+          <p class="left"> Contact 0<%= order.phone %> </p>
+
+          <form id="deleteForm" method="POST" action="/order/<%=order._id%>?_method=DELETE">
+            <button class="btn btn-sm btn-danger">Delete</button>
+           </form>
+           <p class="pull-right"> <%= moment(order.time).fromNow() %> </p>
+          </div>
+        </div>
+      </a>
+      </div>
+    <% }) %>
+  </div>
+
+
+  
+</div>
+
+
+
+<% include partials/footer %>

@@ -1,0 +1,93 @@
+<% include partials/header %>
+
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+       <h1>Welcome to Mobile Wave!</h1>
+       <p>The best mobile phones at an affordable price.</p>
+       <p>
+       <%  if(currentUser){ %>
+       <a class="btn btn-primary btn-large" href="/device/new"> Add New Advertise</a>
+       <%  } %>
+        </p>
+    </div>
+  </header>
+
+
+  <h3>Browse through different Categories!</h3>
+  <a href="/devices" id="view-all" class="pull-right">View All <i class="fas fa-arrow-right"></i></a>
+  <p>Some of our Categories are given below.</p>
+  
+
+  <div class="row">
+    <div class="well col-md-3 col-sm-6 categories">
+      <div><a id="homeCategory" href="/mobile phone"><h4><i class="fas fa-mobile-alt"></i> Mobile phones</h4>
+      </a></div>
+    <ul>  
+     <a id="homeCategory" href="/mobile phone/QMobile"> <li>Qmobile</li> </a>
+     <a id="homeCategory" href="/mobile phone/Apple"> <li>Apple</li> </a>
+     <a id="homeCategory" href="/mobile phone/Samsung">  <li>Samsung</li> </a>
+     <a id="homeCategory" href="/mobile phone/Motorolla"> <li>Motorolla</li> </a>
+    </ul>  
+    </div>
+
+
+    <div class="well col-md-3 col-sm-6 categories">
+      <div><a id="homeCategory" href="/tablet"><h4><i class="fas fa-tablet-alt"></i> Tablets</h4>
+      </a></div>
+    <ul>  
+      <a id="homeCategory" href="/tablet/QMobile"> <li>Qmobile</li> </a>
+      <a id="homeCategory" href="/tablet/Apple"> <li>Apple</li> </a>
+      <a id="homeCategory" href="/tablet/Samsung">  <li>Samsung</li> </a>
+      <a id="homeCategory" href="/tablet/Motorolla"> <li>Motorolla</li> </a>
+    </ul>
+    </div>
+
+    
+    <div class="well col-md-3 col-sm-6 categories">
+    <div><a id="homeCategory" href="/accessory"><h4><i class="fas fa-charging-station"></i> Accessories</h4>
+    </a></div>      
+    <ul>
+      <a id="homeCategory" href="/accessory/Charger"> <li>Charger</li> </a>
+      <a id="homeCategory" href="/accessory/Pouch"> <li>Pouch</li> </a>
+      <a id="homeCategory" href="/accessory/Protector">  <li>Protector</li> </a>
+      <a id="homeCategory" href="/accessory/Cover"> <li>Cover</li> </a>
+    </ul> 
+    </div>
+
+
+    <div class="well col-md-3 col-sm-6 categories">
+      <div><a id="homeCategory" href="/memory"><h4><i class="fas fa-memory"></i>Memory</h4>
+      </a></div>
+     <ul> 
+      <a id="homeCategory" href="/memory/Kingston"> <li>Kingston</li> </a>
+      <a id="homeCategory" href="/memory/Scandisk"> <li>Scandisk</li> </a>
+      <a id="homeCategory" href="/memory/Toshiba">  <li>Toshiba</li> </a>
+      <a id="homeCategory" href="/memory/Loose"> <li>Loose</li> </a>
+    </ul>
+    </div>  
+</div>
+
+
+          <h3>Featured Devices</h3>
+
+    <div class="row" style="display:flex; flex-wrap: wrap;">
+      <% devices.forEach(function(device){ %>
+        <div id="homeDevice" class="col-md-3 col-sm-6">
+          <a id="homeCategory" href="/device/<%=device._id%>">
+          <div id="thumbnailImage" class="img-thumbnail">
+              <img class="img-responsive" src="uploads/<%=device.fileloc[0]%>">
+            <div class="caption-full">
+              <h4 id="left">Rs <%= device.price %> </h4>
+              <p class=""><%= device.company %> <%= device.model%></p>
+             <p class="pull-right"> <%= moment(device.time).fromNow() %> </p>
+            </div>
+          </div>
+        </a>
+        </div>
+      <% }); %>
+    </div>
+
+</div>  
+
+<% include partials/footer %>

@@ -1,0 +1,90 @@
+<% include partials/header %>
+
+
+<div
+
+      
+<%if(devices.length < 1){%>
+  style="padding-bottom: 200px;"
+  <%  } %>
+
+    <%if(devices.length < 4){%>
+        style="padding-bottom: 100px;"
+        <%  } %>
+  
+      class="container">
+<div class="row" style="display:flex; flex-wrap: wrap;">
+
+   <div class="col-md-3">
+     <h4 id="left">Filters</h4>
+    <div class="filters">
+     <h4 id="left">Categories</h4>
+     <ul style="list-style:none;">
+        <a id="homeCategory" href="/mobile phone"><li> Mobile phones</li>
+        </a>
+
+        <a id="homeCategory" href="/tablet"><li> Tablets</li>
+        </a>
+
+        <a id="homeCategory" href="/accessory"><li> Accessories</li>
+        </a>
+     </ul>
+    </div>
+          <div class="filters">
+
+           <% if(devices[0]){ %>
+            <h4 id="left">Price</h4>
+           <form action="/<%=devices[0].type%>/price" method="POST">
+            <div class="form-group">
+             <input id="price-form" class="form-control" type="number" name="min"
+             <% if(min) { %>
+              value="<%=min%>"
+          <%   } else  %>
+             
+         <%    {  %>
+               
+               placeholder="min" 
+           
+           <%  } %>
+             >
+            </div>
+   
+           <input id="price-form" type="number" name="max"
+           <% if(max<1000000000) { %>
+           value="<%=max%>"
+       <%   } else  %>
+          
+      <%    {  %>
+            
+            placeholder="max" 
+        
+        <%  } %>
+          >
+
+           <button class="btn btn-xs">Go!</button>
+           </form>
+            <% } %>
+
+
+          </div>
+   </div>
+
+    <% devices.forEach(function(device){ %>
+      <div id="homeDevice" class="col-md-3 col-sm-6">
+      <a id="homeCategory" href="/device/<%=device._id%>">
+        <div
+        id="thumbnailImage" class="img-thumbnail">
+            <img class="img-responsive" src="/uploads/<%=device.fileloc[0]%>">
+          <div class="caption-full">
+            <h4 id="left">Rs <%= device.price %> </h4>
+            <p class=""><%= device.company %> <%= device.model%></p>
+           <p class="pull-right"> <%= moment(device.time).fromNow() %> </p>
+          </div>
+        </div>
+      </a>
+      </div>
+    <% }) %>
+  </div>
+
+</div>
+<% include partials/footer %>
