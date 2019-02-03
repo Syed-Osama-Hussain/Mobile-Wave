@@ -16,7 +16,8 @@ var express       = require("express"),
     
 
 
-mongoose.connect("mongodb://localhost/mobileWave", { useNewUrlParser: true });
+    var url = process.env.DATABASEURL || "mongodb://localhost/mobileWave"  
+mongoose.connect(url, { useNewUrlParser: true });
 
 
 app.use(require("express-session")({
@@ -232,7 +233,7 @@ app.delete("/order/:id",isLoggedIn,function(req,res){
   });
 });
 
-/*
+
 app.get("/register",function(req,res){
   res.render("register");
 });
@@ -254,7 +255,7 @@ app.post("/register",function(req,res){
  });
 
 });
-*/
+
 
 app.get("/login",function(req,res){
   res.render("login");
