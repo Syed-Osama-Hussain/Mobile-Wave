@@ -7,7 +7,8 @@ var express       = require("express"),
     localStrategy = require("passport-local"),
     moment        = require("moment"),
     multer        = require("multer"),
-    path          = require("path");
+    path          = require("path"),
+    flash         = require("connect-flash"),
     fs            = require("fs"),
     glide         = require("@glidejs/glide"),
     Device        = require("./models/device"),
@@ -19,7 +20,7 @@ var express       = require("express"),
     var url = process.env.DATABASEURL || "mongodb://localhost/mobileWave"  
 mongoose.connect(url, { useNewUrlParser: true });
 
-
+app.use(flash());
 app.use(require("express-session")({
   secret: "Once again this is a secret",
   resave: false,
@@ -35,6 +36,8 @@ app.use(function(req,res,next){
   res.locals.currentUser = req.user;
   res.locals.min = 0;
   res.locals.max = 1000000000;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 
@@ -165,7 +168,7 @@ app.put("/device/:id",isLoggedIn,function(req,res){
         res.redirect("/home");
       }else{
 
-        //req.flash("success","Campground deleted.");
+        req.flash("success","Advertise deleted.");
         res.redirect("/home");
       }
     });
@@ -214,6 +217,7 @@ app.post("/order/:id",function(req,res){
              console.log(err);
            }else{
               console.log(order);
+              req.flash("success","Your order has been placed.");
               res.redirect("/home");     
            }   
       });
@@ -228,6 +232,7 @@ app.delete("/order/:id",isLoggedIn,function(req,res){
     if(err){
       console.log(err);
     }else{
+      req.flash("success","Order Deleted!");
       res.redirect("/home");
     }
   });
@@ -245,11 +250,11 @@ app.post("/register",function(req,res){
 
   User.register(newUser,req.body.password,function(err,user){
     if(err){
-      //req.flash("error",err.message);
+      req.flash("error",err.message);
       return res.redirect("/register");
     }
       passport.authenticate("local")(req,res,function(){
-        //req.flash("success","Welcome to YelpCamp "+ user.username + ".");
+        req.flash("success","Welcome to Mobile Wave "+ user.username + ".");
         res.redirect("/home");
       });
  });
@@ -271,7 +276,7 @@ app.post("/login",passport.authenticate("local",{
 
 app.get("/logout",function(req,res){
   req.logOut();
-  //req.flash("success","Logged you out!");
+  req.flash("success","Logged you out!");
   res.redirect("/home");
 });
 

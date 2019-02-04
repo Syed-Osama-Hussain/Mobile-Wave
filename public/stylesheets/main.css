@@ -43,22 +43,22 @@ body {
 
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://www.photosforclass.com/download/pixabay-690091?webUrl=https%3A%2F%2Fpixabay.com%2Fget%2Fef3cb10f21f51c22d2524518b7444795ea76e5d004b014459cf1c871a6edbc_960.jpg&user=Free-Photos) 
+  background-image: url(/uploads/landing1.jpg) 
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://cdn.pixabay.com/photo/2015/06/24/15/45/ipad-820272_960_720.jpg);
+  background-image: url(/uploads/landing2.jpg);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://cdn.pixabay.com/photo/2015/11/17/21/46/navigation-1048294_960_720.jpg);
+  background-image: url(/uploads/landing3.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https://cdn.pixabay.com/photo/2014/03/22/22/15/twitter-292988_960_720.jpg);
+  background-image: url(/uploads/landing4.jpg);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: url(https://cdn.pixabay.com/photo/2016/11/29/05/08/apple-1867461_960_720.jpg);
+  background-image: url(/uploads/landing5.jpg);
   animation-delay: 40s; 
 }
 
