@@ -51,8 +51,7 @@ var storage = multer.diskStorage({
   destination: "public/uploads/",
   filename: function(req,file,cb){
     cb(null,file.filename + "-" + Date.now() + path.extname(file.originalname));
-    alert("file uploaded");
-  }
+    }
 });
 
 app.use(multer({
